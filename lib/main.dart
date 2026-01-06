@@ -24,13 +24,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Portfolio web',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: theme,
-      home: HomeScreen(onThemeToggle: toggleTheme),
+    return AnimatedTheme(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      data: theme == ThemeMode.light ? AppTheme.lightTheme : AppTheme.darkTheme,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Portfolio web',
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: theme,
+        home: HomeScreen(onThemeToggle: toggleTheme),
+      ),
     );
   }
 }
