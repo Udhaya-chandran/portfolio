@@ -45,30 +45,30 @@ class ContactSection extends StatelessWidget {
                       onTap: () => _launchUrl(
                         'mailto:udhayachandranbalamurugan@gmail.com',
                       ),
-                      delay: 400,
+                      delay: 100,
                     ),
                     _ContactCard(
                       icon: Icons.phone_outlined,
                       title: 'Phone',
                       value: '+91 9976156907',
                       onTap: () => _launchUrl('tel:+919976156907'),
-                      delay: 600,
+                      delay: 200,
                     ),
                     const _ContactCard(
                       icon: Icons.location_on_outlined,
                       title: 'Location',
                       value: 'Coimbatore, India',
                       onTap: null,
-                      delay: 800,
+                      delay: 300,
                     ),
                     _ContactCard(
                       icon: Icons.link,
                       title: 'LinkedIn',
-                      value: 'linkedin.com/in/udhayachandran-balamurugan',
+                      value: 'Udhaychandran',
                       onTap: () => _launchUrl(
                         'https://linkedin.com/in/udhayachandran-balamurugan-26060b255',
                       ),
-                      delay: 1000,
+                      delay: 400,
                     ),
                   ],
                 ),
@@ -209,7 +209,7 @@ class _ContactCardState extends State<_ContactCard> {
           ),
         )
         .animate()
-        .fadeIn(delay: widget.delay.ms, duration: 600.ms)
+        .fadeIn(delay: widget.delay.ms, duration: 400.ms)
         .slideY(begin: 0.2, end: 0);
   }
 }

@@ -34,24 +34,6 @@ class SkillsSection extends StatelessWidget {
             alignment: WrapAlignment.center,
             children: const [
               _SkillCard(
-                title: 'Languages',
-                icon: Icons.code,
-                skills: ['Dart', 'JavaScript', 'TypeScript', 'Python'],
-                delay: 200,
-              ),
-              _SkillCard(
-                title: 'Frameworks',
-                icon: Icons.layers,
-                skills: ['Flutter', 'Angular', 'Ionic', 'Node.js', 'Express.js'],
-                delay: 400,
-              ),
-              _SkillCard(
-                title: 'State Management',
-                icon: Icons.hub,
-                skills: ['Riverpod', 'BLoC', 'Provider'],
-                delay: 600,
-              ),
-              _SkillCard(
                 title: 'Mobile & Integrations',
                 icon: Icons.smartphone,
                 skills: [
@@ -62,13 +44,38 @@ class SkillsSection extends StatelessWidget {
                   'Geolocation',
                   'Bluetooth',
                 ],
-                delay: 800,
+                delay: 100,
               ),
               _SkillCard(
-                title: 'Backend & Tools',
+                title: 'Core',
+                icon: Icons.code,
+                skills: ['Dart', 'Flutter', 'OOP', 'Clean Architecture'],
+                delay: 200,
+              ),
+              _SkillCard(
+                title: 'State Management',
+                icon: Icons.hub,
+                skills: ['Riverpod', 'BLoC', 'Provider'],
+                delay: 300,
+              ),
+              _SkillCard(
+                title: 'Backend & Data',
                 icon: Icons.storage,
-                skills: ['REST APIs', 'MySQL', 'Sequelize', 'Git & GitHub', 'Postman'],
-                delay: 1000,
+                skills: ['REST APIs', 'MySQL', 'Sequelize', 'Node.js'],
+                delay: 400,
+              ),
+              _SkillCard(
+                title: 'Tools',
+                icon: Icons.layers,
+                skills: [
+                  'Git & GitHub',
+                  'Android Studio',
+                  'VS Code',
+                  'Postman',
+                  'Cursor AI',
+                  'Antigravity'
+                ],
+                delay: 500,
               ),
             ],
           ),
@@ -104,77 +111,89 @@ class _SkillCardState extends State<_SkillCard> {
     final isDark = theme.brightness == Brightness.dark;
 
     return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: 300,
-        padding: const EdgeInsets.all(32),
-        transform: Matrix4.translationValues(0, _isHovered ? -10.0 : 0.0, 0),
-        decoration: BoxDecoration(
-          color: theme.cardColor,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: _isHovered 
-                ? theme.primaryColor.withValues(alpha : 0.5) 
-                : theme.dividerColor.withValues(alpha : 0.1),
-            width: 2,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: theme.primaryColor.withValues(alpha : _isHovered ? 0.15 : 0.05),
-              blurRadius: _isHovered ? 30 : 20,
-              offset: const Offset(0, 10),
+          onEnter: (_) => setState(() => _isHovered = true),
+          onExit: (_) => setState(() => _isHovered = false),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            width: 300,
+            padding: const EdgeInsets.all(32),
+            transform: Matrix4.translationValues(
+              0,
+              _isHovered ? -10.0 : 0.0,
+              0,
             ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: theme.primaryColor.withValues(alpha : 0.1),
-                borderRadius: BorderRadius.circular(12),
+            decoration: BoxDecoration(
+              color: theme.cardColor,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: _isHovered
+                    ? theme.primaryColor.withValues(alpha: 0.5)
+                    : theme.dividerColor.withValues(alpha: 0.1),
+                width: 2,
               ),
-              child: Icon(widget.icon, color: theme.primaryColor, size: 32),
+              boxShadow: [
+                BoxShadow(
+                  color: theme.primaryColor.withValues(
+                    alpha: _isHovered ? 0.15 : 0.05,
+                  ),
+                  blurRadius: _isHovered ? 30 : 20,
+                  offset: const Offset(0, 10),
+                ),
+              ],
             ),
-            const SizedBox(height: 24),
-            Text(
-              widget.title,
-              style: theme.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 24),
-            Wrap(
-              spacing: 8,
-              runSpacing: 12,
-              children: widget.skills.map((skill) {
-                return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: isDark 
-                        ? Colors.white.withValues(alpha : 0.05)
-                        : Colors.black.withValues(alpha : 0.05),
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(
-                      color: theme.dividerColor.withValues(alpha : 0.1),
-                    ),
+                    color: theme.primaryColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Text(
-                    skill,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: theme.colorScheme.secondary,
-                    ),
+                  child: Icon(widget.icon, color: theme.primaryColor, size: 32),
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  widget.title,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
-                );
-              }).toList(),
+                ),
+                const SizedBox(height: 24),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 12,
+                  children: widget.skills.map((skill) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: isDark
+                            ? Colors.white.withValues(alpha: 0.05)
+                            : Colors.black.withValues(alpha: 0.05),
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(
+                          color: theme.dividerColor.withValues(alpha: 0.1),
+                        ),
+                      ),
+                      child: Text(
+                        skill,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: theme.colorScheme.secondary,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    ).animate().fadeIn(delay: widget.delay.ms, duration: 600.ms).slideY(begin: 0.2, end: 0);
+          ),
+        )
+        .animate()
+        .fadeIn(delay: widget.delay.ms, duration: 600.ms)
+        .slideY(begin: 0.2, end: 0);
   }
 }
